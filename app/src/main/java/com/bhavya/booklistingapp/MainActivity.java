@@ -3,6 +3,7 @@ package com.bhavya.booklistingapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -35,12 +36,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bhavya.booklistingapp.databinding.ActivityMainBinding;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<List<book>> {
+public class MainActivity extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<List<book>>, Navigator {
 
     private static final String bookFetchUrl = "https://www.googleapis.com/books/v1/volumes";
     private RecyclerView recyclerView;
@@ -108,6 +110,14 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ActivityMainBinding b = ((ActivityMainBinding) DataBindingUtil.setContentView (this, R.layout.activity_main));
+        b.setViewModel(new MainViewModel(this));
+
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        binding.setViewModel(new MainViewModel(this));
+        setSupportActionBar(binding.toolbar);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
