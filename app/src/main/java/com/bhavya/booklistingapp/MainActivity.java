@@ -1,6 +1,8 @@
 package com.bhavya.booklistingapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -10,6 +12,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.app.LoaderManager;
 import android.content.Loader;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -21,6 +24,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -150,9 +156,8 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
 
         //getLoaderManager().initLoader(BOOKS_LOADER_ID, null, this);
 
-
         try {
-            Glide.with(this).load(R.drawable.girl).into((ImageView) findViewById(R.id.backdrop));
+            Glide.with(this).load(R.drawable.parchemin).into((ImageView) findViewById(R.id.backdrop));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -264,5 +269,20 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem Item) {
+
+                Intent intent1 = new Intent(this, MainActivity2.class);
+                this.startActivity(intent1);
+
+        return super.onOptionsItemSelected(Item);
     }
 }
