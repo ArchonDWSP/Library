@@ -15,9 +15,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-/**
- * Created by Bhavya Arora on 1/10/2018.
- */
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.MyViewHolder> {
 

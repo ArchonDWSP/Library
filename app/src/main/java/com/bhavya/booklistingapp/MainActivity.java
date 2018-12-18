@@ -35,6 +35,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bhavya.booklistingapp.databinding.ActivityMainBinding;
 import com.bumptech.glide.Glide;
@@ -42,13 +43,13 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.bhavya.booklistingapp.booksLoader.arrayList;
+
 public class MainActivity extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<List<book>>, Navigator {
 
     private static final String bookFetchUrl = "https://www.googleapis.com/books/v1/volumes";
     private RecyclerView recyclerView;
     public BooksAdapter adapter;
-    /* Arraylist is static so that it binds with instance of class
-    * and we dont have to initialize again in else under onCreate*/
     public static ArrayList<book> bookList = null;
     private static final int BOOKS_LOADER_ID = 1;
     private EditText searchBox;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         searchBox = (EditText) findViewById(R.id.searchBox);
         ///BUT How to convert spaces
         String query = searchBox.getText().toString();
-        if(query.isEmpty() || query.length() == 0){
+        if (query.isEmpty() || query.length() == 0) {
             searchBox.setError("Please Enter Any Book");
             return new booksLoader(this, null);
         }
@@ -85,11 +86,10 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
     @Override
     public void onLoadFinished(Loader<List<book>> loader, List<book> list) {
         books_progressBar.setVisibility(View.GONE);
-        if(list !=null && !list.isEmpty()){
+        if (list != null && !list.isEmpty()) {
             prepareBooks(list);
             Log.i(TAG, "onLoadFinished: ");
-        }
-        else{
+        } else {
             empty_state.setText("NO DATA");
             empty_state.setVisibility(View.VISIBLE);
         }
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
     @Override
     public void onLoaderReset(Loader<List<book>> loader) {
         Log.i(QueryUtils.TAG, "onLoaderReset: ");
-        if(adapter == null){
+        if (adapter == null) {
             return;
         }
         bookList.clear();
@@ -111,10 +111,10 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActivityMainBinding b = ((ActivityMainBinding) DataBindingUtil.setContentView (this, R.layout.activity_main));
+        ActivityMainBinding b = ((ActivityMainBinding) DataBindingUtil.setContentView(this, R.layout.activity_main));
         b.setViewModel(new MainViewModel(this));
 
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setViewModel(new MainViewModel(this));
         setSupportActionBar(binding.toolbar);
 
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         //Checking the Network State
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if(networkInfo == null){
+        if (networkInfo == null) {
             empty_state.setText("NO INTERNET");
             empty_state.setVisibility(View.VISIBLE);
             ((Button) findViewById(R.id.searchButton)).setEnabled(false);
@@ -140,17 +140,17 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         initCollapsingToolbar();
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        if(savedInstanceState == null || !savedInstanceState.containsKey("booksList")){
+        if (savedInstanceState == null || !savedInstanceState.containsKey("booksList")) {
             bookList = new ArrayList<>();
             adapter = new BooksAdapter(this, bookList);
 
             //log Statement
             Log.i(TAG, "onCreate: " + bookList);
-        }else {
+        } else {
             bookList.addAll(savedInstanceState.<book>getParcelableArrayList("booksList"));
 
             //log statement
-            Log.i(TAG, "onCreate: under else" + bookList );
+            Log.i(TAG, "onCreate: under else" + bookList);
             adapter = new BooksAdapter(this, bookList);
             //this will reLoad the adapter
             adapter.notifyDataSetChanged();
@@ -172,6 +172,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
             e.printStackTrace();
         }
 
+
     }
 
     @Override
@@ -180,13 +181,13 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         super.onSaveInstanceState(outState);
     }
 
-    public void searchButton(View view){
+    public void searchButton(View view) {
         books_progressBar.setVisibility(View.VISIBLE);
         bookList.clear();
         adapter.notifyDataSetChanged();
         getLoaderManager().restartLoader(BOOKS_LOADER_ID, null, this);
         getLoaderManager().initLoader(BOOKS_LOADER_ID, null, this);
-        Log.i(TAG, "searchButton: "  + bookList);
+        Log.i(TAG, "searchButton: " + bookList);
     }
 
     /**
@@ -273,6 +274,9 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         }
     }
 
+
+
+
     /**
      * Converting dp to pixel
      */
@@ -290,9 +294,27 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
     @Override
     public boolean onOptionsItemSelected(MenuItem Item) {
 
-                Intent intent1 = new Intent(this, MainActivity2.class);
-                this.startActivity(intent1);
+        Intent intent1 = new Intent(this, MainActivity2.class);
+        this.startActivity(intent1);
 
-        return super.onOptionsItemSelected(Item);
+        switch (Item.getItemId()) {
+
+            case R.id.add_button:
+                Intent intent2 = new Intent(this, MainActivity.class);
+                startActivity(intent2);
+                break;
+
+            case R.id.modify_button:
+                Intent intent3 = new Intent(this, MainActivity.class);
+                startActivity(intent3);
+                break;
+
+            case R.id.remove_button:
+                Intent intent4 = new Intent(this, MainActivity.class);
+                startActivity(intent4);
+                break;
+            }
+
+            return super.onOptionsItemSelected(Item);
     }
 }
