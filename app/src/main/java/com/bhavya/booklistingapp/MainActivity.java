@@ -1,4 +1,4 @@
-package com.bhavya.Library;
+package com.bhavya.booklistingapp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,6 @@ import android.graphics.Rect;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
@@ -32,7 +31,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bhavya.Library.databinding.ActivityMainBinding;
+import com.bhavya.booklistingapp.databinding.ActivityMainBinding;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -54,6 +53,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
     @Override
     public Loader<List<book>> onCreateLoader(int id, Bundle args) {
         searchBox = (EditText) findViewById(R.id.searchBox);
+
         ///BUT How to convert spaces
         String query = searchBox.getText().toString();
         if (query.isEmpty() || query.length() == 0) {
@@ -110,9 +110,6 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setViewModel(new MainViewModel(this));
         setSupportActionBar(binding.toolbar);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
 
         books_progressBar = (ProgressBar) findViewById(R.id.books_progressBar);
@@ -286,28 +283,14 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
 
     @Override
     public boolean onOptionsItemSelected(MenuItem Item) {
-
-        Intent intent1 = new Intent(this, MainActivity2.class);
-        this.startActivity(intent1);
-
-        switch (Item.getItemId()) {
-
-            case R.id.add_button:
-                Intent intent2 = new Intent(this, MainActivity.class);
-                startActivity(intent2);
+        switch(Item.getItemId()) {
+            case R.id.settings:
+                Intent intent1 = new Intent(this, MainActivity2.class);
+                this.startActivity(intent1);
                 break;
-
-            case R.id.modify_button:
-                Intent intent3 = new Intent(this, MainActivity.class);
-                startActivity(intent3);
-                break;
-
-            case R.id.remove_button:
-                Intent intent4 = new Intent(this, MainActivity.class);
-                startActivity(intent4);
-                break;
-            }
-
-            return super.onOptionsItemSelected(Item);
+            default:
+                return super.onOptionsItemSelected(Item);
+        }
+        return true;
     }
 }

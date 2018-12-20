@@ -9,7 +9,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.bhavya.Library.MainViewModel">
+            type="com.bhavya.booklistingapp.MainViewModel">
         </variable>
     </data>
 

@@ -1,13 +1,10 @@
-package com.bhavya.Library;
+package com.bhavya.booklistingapp;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 
 import java.util.List;
 
-/**
- * Created by Bhavya Arora on 1/10/2018.
- */
 
 public class booksLoader extends AsyncTaskLoader<List<book>> {
     String url;

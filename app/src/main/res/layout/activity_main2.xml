@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_toLeftOf="@+id/modify_button"
+        android:onClick="add"
 
     />
 
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_toLeftOf="@+id/remove_button"
+        android:onClick="modify"
 
     />
 
@@ -37,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
+        android:onClick="delete"
 
     />
 

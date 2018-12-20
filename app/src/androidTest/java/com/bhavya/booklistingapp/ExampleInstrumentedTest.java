@@ -1,4 +1,4 @@
-package com.bhavya.Library;
+package com.bhavya.booklistingapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

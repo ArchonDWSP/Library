@@ -1,4 +1,4 @@
-package com.bhavya.Library;
+package com.bhavya.booklistingapp;
 
 import android.databinding.ObservableField;
 import android.widget.Toolbar;
@@ -13,5 +13,5 @@ public class MainViewModel {
     public MainViewModel(Navigator main){
         this.main = main;
     }
-    
+
 }
