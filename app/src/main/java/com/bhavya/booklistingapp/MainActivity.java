@@ -31,6 +31,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
 import com.bhavya.booklistingapp.databinding.ActivityMainBinding;
 import com.bumptech.glide.Glide;
 
