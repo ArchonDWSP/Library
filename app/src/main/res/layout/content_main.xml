@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/viewBg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.bhavya.booklistingapp.MainActivity"
+    tools:context="com.bhavya.Library.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <ProgressBar

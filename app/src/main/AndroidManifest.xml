@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bhavya.booklistingapp">
+    package="com.bhavya.Library">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -12,17 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.bhavya.Library.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity2"></activity>
-        <activity android:name=".MainActivityTest"></activity>
+        <activity android:name="com.bhavya.Library.MainActivity2"></activity>
+        <activity android:name="com.bhavya.Library.MainActivityTest"></activity>
         <activity
-            android:name=".bookListView"
+            android:name="com.bhavya.Library.bookListView"
             android:label="@string/title_activity_book_list_view"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

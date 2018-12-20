@@ -1,19 +1,15 @@
-package com.bhavya.booklistingapp;
+package com.bhavya.Library;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Parcelable;
-import android.os.PersistableBundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.app.LoaderManager;
 import android.content.Loader;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -35,15 +31,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bhavya.booklistingapp.databinding.ActivityMainBinding;
+import com.bhavya.Library.databinding.ActivityMainBinding;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.bhavya.booklistingapp.booksLoader.arrayList;
 
 public class MainActivity extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<List<book>>, Navigator {
 

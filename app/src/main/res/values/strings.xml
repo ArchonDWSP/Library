@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BookListingApp</string>
+    <string name="app_name">Library</string>
     <string name="action_settings">Settings</string>
     <string name="backdrop_title">Chuck Norris\'s Library</string>
     <string name="backdrop_subtitle">Chuck Norris doesn\'t read books.\n He stares them down until he gets the information he wants.</string>
